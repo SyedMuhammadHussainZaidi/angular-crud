@@ -1,0 +1,47 @@
+<div class="main-area">
+  <div class="content-area">
+    <div class="container">
+      <div class="form-area mt-5">
+        <h3>{{ isEditing ? 'Edit Product' : 'Create Product' }}</h3>
+        <form #productsForm="ngForm" (ngSubmit)="onSubmit(productsForm.value)">
+          <label class="m-3" for="">Product Name</label>
+          <input class="m-1" type="text" name="pName" [(ngModel)]="productForm.pName">
+
+          <label class="m-1" for="">Product Description</label>
+          <input class="m-1" type="text" name="desc" [(ngModel)]="productForm.desc">
+
+          <label class="m-1" for="">Product Price</label>
+          <input class="m-1" type="text" name="price" [(ngModel)]="productForm.price">
+
+          <input class="m-1" type="submit" [value]="isEditing ? 'Update Product' : 'Add Product'">
+        </form>
+      </div>
+      <div class="product-display-area">
+        <h3>All Products</h3>
+        <table id="products">
+          <thead>
+            <tr>
+              <!-- <th>ID</th> -->
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <!-- <td>{{ product.id }}</td> -->
+              <td>{{ product.pName }}</td>
+              <td>{{ product.desc }}</td>
+              <td>{{ product.price }}</td>
+              <td>
+                <button class="edit-btn m-2" (click)="onEdit(product)">Edit</button>
+                <button class="delete-btn" (click)="onDelete(product.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
